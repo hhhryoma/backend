@@ -17,6 +17,7 @@ export class Hello implements DataProvider {
     plojection = [
         "id", "world"
     ]
+
     async fetch(userId: number) {
         try {
             const query: Query = {
@@ -27,8 +28,7 @@ export class Hello implements DataProvider {
             const response = await selectQuery(query)
             const datas = response.map((data) => {
                 const dto: HelloDTO = {
-                    id: data.id,
-                    world: data.world
+                    ...data
                 }
                 return dto
             })
@@ -43,6 +43,10 @@ export class Hello implements DataProvider {
         }
     }
     async update() {
+        return null
+    }
+
+    async fetchAll() {
         return null
     }
 }
